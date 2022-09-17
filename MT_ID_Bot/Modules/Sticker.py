@@ -16,8 +16,7 @@ SUB_TEXT=Translation.FSUB_TEXT # FSUB Information Text
 
 @MT_ID_Bot.on_message(filters.command(["stickerid"]))
 async def stickerid(bot, message):   
-    update_channel = UPDATE_CHANNEL
-    if update_channel:
+    if update_channel := UPDATE_CHANNEL:
         try:
             user = await motech.get_chat_member(update_channel, update.chat.id)
             if user.status == "kicked out":
@@ -35,7 +34,7 @@ async def stickerid(bot, message):
             return
         except Exception:
             await update.reply_text(f"@{UPDATE_CHANNEL}")
-            return  
+            return
     if message.reply_to_message.sticker:
        await message.reply(f"**𝐘𝐨𝐮𝐫 𝐬𝐭𝐢𝐜𝐤𝐞𝐫𝐬 𝐢𝐝 𝐢𝐬**  \n `{message.reply_to_message.sticker.file_id}` \n \n ** Unique ID is ** \n\n`{message.reply_to_message.sticker.file_unique_id}`", quote=True)
     else: 
